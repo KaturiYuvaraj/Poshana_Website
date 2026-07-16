@@ -1,0 +1,384 @@
+/* ─── Section shell ─────────────────────────────────────────────────── */
+.download-section {
+    position: relative;
+    padding: 120px 0;
+    background: var(--bg-primary);
+    overflow: hidden;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Decorative ambient blobs */
+.dl-blob {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(120px);
+}
+.dl-blob--1 {
+    width: 500px;
+    height: 500px;
+    top: -80px;
+    left: -100px;
+    background: radial-gradient(circle, rgba(0, 122, 143, 0.18), transparent 70%);
+}
+.dl-blob--2 {
+    width: 400px;
+    height: 400px;
+    bottom: -60px;
+    right: 5%;
+    background: radial-gradient(circle, rgba(239, 255, 30, 0.07), transparent 70%);
+}
+
+/* ─── Layout ─────────────────────────────────────────────────────────── */
+.download-container {
+    width: min(1140px, 90%);
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.01) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 36px;
+    padding: 72px 64px;
+    backdrop-filter: blur(24px);
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+/* ─── Text column ────────────────────────────────────────────────────── */
+.download-text-col {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Eyebrow pill */
+.dl-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(239, 255, 30, 0.08);
+    border: 1px solid rgba(239, 255, 30, 0.2);
+    color: #EFFF1E;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 22px;
+}
+.dl-eyebrow-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #EFFF1E;
+    box-shadow: 0 0 8px #EFFF1E;
+    animation: dl-pulse 2s ease-in-out infinite;
+}
+@keyframes dl-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%       { opacity: 0.5; transform: scale(0.7); }
+}
+
+/* Heading */
+.dl-heading {
+    font-size: 56px;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1.1;
+    letter-spacing: -2px;
+    margin-bottom: 18px;
+}
+.dl-heading--accent {
+    background: linear-gradient(135deg, #EFFF1E, #42e8c7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Subtext */
+.dl-subtext {
+    font-size: 17px;
+    color: #8a9e99;
+    line-height: 1.7;
+    margin-bottom: 22px;
+    max-width: 380px;
+}
+
+/* Rating */
+.dl-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+}
+.dl-stars {
+    display: flex;
+    gap: 2px;
+}
+.dl-rating-text {
+    font-size: 13px;
+    color: #b8c6c2;
+    font-weight: 500;
+}
+
+/* ─── Store buttons ──────────────────────────────────────────────────── */
+.dl-buttons {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+/* Wrapper — fixed equal size for both badges */
+.dl-store-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 68px;
+    background: #000;
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+/* Shimmer sweep on hover */
+.dl-btn-shimmer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+        105deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.18) 50%,
+        transparent 70%
+    );
+    transform: translateX(-100%);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.dl-store-btn:hover {
+    border-color: rgba(239, 255, 30, 0.35);
+    box-shadow:
+        0 0 0 1px rgba(239, 255, 30, 0.15),
+        0 16px 32px rgba(0, 0, 0, 0.45),
+        0 0 24px rgba(239, 255, 30, 0.08);
+}
+
+/* Badge images — fill the fixed container */
+.dl-badge-img {
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    pointer-events: none;
+    display: block;
+}
+
+/* ─── QR row (two codes side by side) ───────────────────────────────── */
+.dl-qr-row {
+    display: flex;
+    gap: 16px;
+    align-items: stretch;
+    margin-bottom: 28px;
+}
+
+.dl-qr-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 14px 14px 12px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+}
+
+.dl-qr-card:hover {
+    border-color: rgba(239, 255, 30, 0.2);
+    box-shadow: 0 0 20px rgba(239, 255, 30, 0.05);
+}
+
+.dl-qr-img-wrap {
+    width: 170px;
+    height: 170px;
+    background: #fff;
+    border-radius: 14px;
+    padding: 8px;
+    flex-shrink: 0;
+}
+
+.dl-qr-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 6px;
+    display: block;
+}
+
+/* Platform label */
+.dl-qr-platform {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 100px;
+    width: fit-content;
+}
+
+.dl-qr-platform--apple {
+    color: #EFFF1E;
+    background: rgba(239, 255, 30, 0.08);
+    border: 1px solid rgba(239, 255, 30, 0.22);
+}
+
+.dl-qr-platform--play {
+    color: #34d399;
+    background: rgba(52, 211, 153, 0.08);
+    border: 1px solid rgba(52, 211, 153, 0.22);
+}
+
+.dl-qr-platform-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+}
+
+/* ─── Phone column ───────────────────────────────────────────────────── */
+.download-phones-col {
+    flex-shrink: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.dl-phone-glow {
+    position: absolute;
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 122, 143, 0.22), transparent 70%);
+    filter: blur(60px);
+    pointer-events: none;
+}
+.dl-phone-img {
+    position: relative;
+    z-index: 1;
+    max-width: 380px;
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 40px 70px rgba(0, 0, 0, 0.55));
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────── */
+@media (max-width: 960px) {
+    .download-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 60px 36px;
+        gap: 24px;
+    }
+
+    /* Unwrap the text column so children become direct flex items */
+    .download-text-col {
+        display: contents;
+    }
+
+    /* ── Order: info → phone → QR → buttons ── */
+    .dl-eyebrow        { order: 1; }
+    .dl-heading        { order: 2; }
+    .dl-subtext        { order: 3; }
+    .dl-rating         { order: 4; }
+    .download-phones-col { order: 5; }
+    .dl-qr-row         { order: 6; }
+    .dl-buttons        { order: 7; }
+
+    /* Centre every unwrapped child */
+    .dl-eyebrow,
+    .dl-subtext,
+    .dl-rating,
+    .dl-qr-row,
+    .dl-buttons {
+        align-self: center;
+    }
+
+    /* Reset margins that relied on text-col's flex gap */
+    .dl-heading  { margin-bottom: 14px; font-size: 44px; }
+    .dl-subtext  { margin-bottom: 14px; max-width: 340px; }
+    .dl-rating   { margin-bottom: 0; justify-content: center; }
+    .dl-qr-row   { justify-content: center; margin-bottom: 0; }
+    .dl-buttons  { justify-content: center; }
+
+    /* QR cards larger */
+    .dl-qr-img-wrap {
+        width: 140px;
+        height: 140px;
+        padding: 8px;
+    }
+    .dl-qr-card {
+        padding: 12px 12px 10px;
+        gap: 8px;
+    }
+
+    .dl-phone-img {
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 540px) {
+    .download-container {
+        padding: 40px 20px;
+    }
+    .dl-heading {
+        font-size: 36px;
+    }
+    .dl-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    .dl-store-btn {
+        width: 160px;
+        height: 50px;
+        border-radius: 12px;
+    }
+    .dl-phone-img {
+        max-width: 220px;
+    }
+    .dl-qr-row {
+        gap: 12px;
+    }
+    .dl-qr-img-wrap {
+        width: 125px;
+        height: 125px;
+        padding: 6px;
+    }
+    .dl-qr-card {
+        padding: 10px 10px 8px;
+        gap: 8px;
+        border-radius: 16px;
+    }
+    .dl-qr-platform {
+        font-size: 9px;
+        padding: 2.5px 9px;
+    }
+}

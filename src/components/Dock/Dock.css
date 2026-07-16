@@ -1,0 +1,140 @@
+.dock-outer{
+    display:flex;
+    overflow:visible;
+    position:relative;
+    align-items:center;
+    justify-content:center;
+    margin:0;
+}
+
+.dock-panel{
+    width: 700px;
+    display: flex;
+    overflow: visible;
+    position: relative;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 8px 24px;
+    gap: 6px;
+    border-radius: 16px;
+    background: rgba(255,255,255,.04);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255,255,255,.08);
+}
+
+.dock-item{
+
+    position:relative;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:14px;
+    padding: 0 12px;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    color:var(--poshana-text-light);
+
+    cursor:pointer;
+
+    transition: background 0.2s, border-color 0.2s, box-shadow 0.2s, padding 0.2s;
+
+    overflow:hidden;
+    white-space:nowrap;
+}
+
+.dock-item--hovered {
+    padding: 0 16px;
+}
+
+.dock-item:hover{
+
+    background:linear-gradient(
+    135deg,
+    var(--poshana-accent),
+    var(--poshana-accent)
+    );
+
+    color:#051010;
+
+    border-color: var(--poshana-accent);
+
+    box-shadow:
+    0 0 25px rgba(239,255,30,.35);
+
+}
+
+.dock-icon{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.dock-label-inline {
+    display: inline-block;
+    overflow: hidden;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: #051010;
+    pointer-events: none;
+}
+.hero-dock{
+
+position:relative;
+
+}
+
+.hero-dock::after{
+
+content:"";
+
+position:absolute;
+
+left:30px;
+
+right:30px;
+
+bottom:-8px;
+
+height:2px;
+
+background:linear-gradient(
+90deg,
+transparent,
+rgba(50,255,210,.6),
+transparent
+);
+
+}
+/* ===========================
+   Responsive Design
+=========================== */
+@media (max-width: 600px) {
+    .dock-panel {
+        width: 100% !important;
+        max-width: 380px !important;
+        padding: 6px 12px !important;
+        border-radius: 12px !important;
+        gap: 4px !important;
+    }
+    .dock-item {
+        padding: 0 8px !important;
+        height: 38px !important;
+    }
+    .dock-item--hovered {
+        padding: 0 10px !important;
+    }
+    .dock-label-inline {
+        display: none !important;
+    }
+}
+
+

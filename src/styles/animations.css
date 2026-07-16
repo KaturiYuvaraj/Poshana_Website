@@ -1,0 +1,134 @@
+/* =============================================================
+   POSHANA LANDING PAGE ANIMATION STYLES
+   - Initial invisible states for GSAP to animate from
+   - Hover micro-animations
+   - Scroll progress bar
+   - Button ripple effects
+============================================================= */
+
+/* ─── Scroll Progress Bar ────────────────────────────────── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #EFFF1E, #42E8C7, #EFFF1E);
+  background-size: 200% 100%;
+  z-index: 9999;
+  transform-origin: left center;
+  animation: progressShimmer 3s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes progressShimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+/* ─── Initial invisible states ───────────────────────────── */
+.hero-badge,
+.hero-heading,
+.hero-description,
+.hero-buttons,
+.hero-stats > div {
+  opacity: 0;
+}
+
+/* ─── Smooth transition defaults for all cards ───────────── */
+.feature-card,
+.glass-card,
+.about-pillar-card,
+.testimonial-card,
+.store-btn,
+.faq-item,
+.journey-step-btn {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
+}
+
+/* ─── Enhanced hover: feature cards ─────────────────────── */
+.feature-card:hover {
+  transform: translateY(-8px) scale(1.01);
+}
+
+/* ─── Enhanced hover: glass stat cards ──────────────────── */
+.glass-card:hover {
+  transform: translateY(-6px) scale(1.04);
+}
+
+/* ─── Enhanced hover: pillar cards ──────────────────────── */
+.about-pillar-card:hover {
+  transform: translateY(-5px) scale(1.02);
+}
+
+/* ─── Enhanced hover: testimonial cards ─────────────────── */
+.testimonial-card:hover {
+  transform: translateY(-6px) scale(1.01);
+}
+
+/* ─── Enhanced hover: store download buttons ─────────────── */
+.store-btn:hover {
+  transform: translateY(-5px) scale(1.04);
+}
+
+/* ─── Hover glow on trust pills ──────────────────────────── */
+.trust-pills > div {
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+  cursor: pointer;
+}
+.trust-pills > div:hover {
+  transform: translateY(-3px) scale(1.06);
+}
+
+/* ─── FAQ item hover lift ────────────────────────────────── */
+.faq-item {
+  transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+.faq-item:hover {
+  transform: translateX(4px);
+}
+
+/* ─── Journey step button hover ─────────────────────────── */
+.journey-step-btn:hover {
+  transform: translateX(5px);
+}
+
+/* ─── Navbar button shimmer on hover ─────────────────────── */
+.nav-right button {
+  overflow: hidden;
+}
+
+/* ─── Smooth page fade-in on load ───────────────────────── */
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+main {
+  animation: pageFadeIn 0.5s ease-out forwards;
+}
+
+/* ─── Star companion: enhanced float ────────────────────── */
+@keyframes starGlow {
+  0%, 100% { filter: brightness(1.4) contrast(1.1) drop-shadow(0 15px 35px rgba(0,0,0,.45)) drop-shadow(0 0 30px rgba(239,255,30,.35)); }
+  50%       { filter: brightness(1.6) contrast(1.1) drop-shadow(0 15px 35px rgba(0,0,0,.45)) drop-shadow(0 0 45px rgba(239,255,30,.6)); }
+}
+
+.star-companion {
+  animation: floatCompanion 6s ease-in-out infinite, starGlow 4s ease-in-out infinite;
+}
+
+/* ─── Scroll-reveal utility (fallback for elements not handled by gsap) ─ */
+@media (prefers-reduced-motion: reduce) {
+  .hero-badge,
+  .hero-heading,
+  .hero-description,
+  .hero-buttons,
+  .hero-stats > div,
+  .phone-wrapper,
+  .star-companion {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

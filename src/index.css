@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Kanit',sans-serif;
+}
+
+/* ===========================
+   DARK THEME (default)
+=========================== */
+:root {
+    --poshana-dark: #003C42;
+    --poshana-teal-light: #00938C;
+    --poshana-teal: #007A8F;
+    --poshana-mint: #F0F9F8;
+    --poshana-yellow: #EFFF1E;
+    --poshana-text-dark: #080809;
+    --poshana-text-light: #ffffff;
+    --poshana-accent: #EFFF1E;
+    --poshana-accent-secondary: #007A8F;
+
+    /* Semantic tokens - Dark */
+    --bg-primary: #003C42;
+    --bg-secondary: #00282D;
+    --bg-surface: rgba(255,255,255,0.04);
+    --bg-surface-hover: rgba(255,255,255,0.08);
+    --bg-card: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    --text-primary: #ffffff;
+    --text-secondary: #B8C6C2;
+    --text-muted: #718096;
+    --border-color: rgba(255,255,255,0.08);
+    --border-accent: rgba(239,255,30,0.2);
+    --shadow-color: rgba(0,0,0,0.35);
+    --navbar-bg: rgba(10,18,18,0.42);
+    --card-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    --accent-color: #EFFF1E;
+    --accent-on-light: #EFFF1E;
+    --hero-gradient: radial-gradient(circle at 20% 20%,rgba(20,140,110,.18),transparent 35%),
+                     radial-gradient(circle at 80% 30%,rgba(60,220,180,.12),transparent 35%),
+                     radial-gradient(circle at 50% 90%,rgba(20,90,70,.22),transparent 45%),
+                     var(--bg-primary);
+}
+
+
+
+h1,h2,h3{
+    font-family:'Sora',sans-serif;
+}
+
+body,p{
+    font-family:'Inter',sans-serif;
+}
+
+.stat-number{
+    font-family:'Space Grotesk',sans-serif;
+}
+
+.stat-text{
+    font-size:17px;
+    font-weight:400;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+main{
+    width:100%;
+    overflow:hidden;
+}
+
+section{
+    position:relative;
+    width:100%;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+button{
+    font-family:inherit;
+}
+
+img{
+    display:block;
+    max-width:100%;
+}
+
+.split-char,
+.split-word {
+    display: inline-block !important;
+    white-space: pre !important;
+}
+
+html,
+body,
+#root{
+    margin:0;
+    padding:0;
+    width:100%;
+    min-height:100%;
+    overflow-x:hidden;
+    background:var(--bg-primary);
+    transition: background 0.4s ease, color 0.4s ease;
+}
+
+body{
+    color:var(--text-primary);
+}
