@@ -1,4 +1,4 @@
-const API = "http://localhost:5000/api/insights";
+const API = "https://poshanawebsite-production.up.railway.app/api/insights";
 
 export async function askAI(messages) {
 
