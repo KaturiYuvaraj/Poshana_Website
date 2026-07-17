@@ -24,16 +24,17 @@ export default function Hero({ onOpenModal }) {
             colors={["#5EEAD4", "#34D399", "#E8FFF8"]}
             backgroundColor="#002024"
             speed={0.35}
-            streakCount={4}
+            streakCount={3}
             streakWidth={1.4}
             streakLength={2.0}
             glow={2.5}
-            density={0.24}
+            density={0.18}
             twinkle={0.8}
             zoom={3.0}
             backgroundGlow={0.0}
             opacity={0.9}
             mouseInteraction={false}
+            dpr={Math.min(1.5, typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1)}
           />
         </div>
 
