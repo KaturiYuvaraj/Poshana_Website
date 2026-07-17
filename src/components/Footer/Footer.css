@@ -20,7 +20,7 @@
 }
 
 .footer-container {
-  width: min(1280px, 90%);
+  width: min(1200px, 90%);
   margin: 0 auto;
   position: relative;
   z-index: 2;

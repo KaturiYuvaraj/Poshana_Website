@@ -5,25 +5,30 @@ import { motion } from "framer-motion";
 const PILLARS = [
   {
     icon: <Compass size={24} />,
-    title: "Holistic Health",
-    description: "Integrating physical workouts, dietary nutrition, and emotional mindfulness into a single cohesive ecosystem."
+    title: "Holistic Wellness",
+    description:
+      "Bringing nutrition, healthy habits, fitness guidance, and mindful living together in one intelligent platform."
   },
   {
     icon: <Sparkles size={24} />,
-    title: "AI Personalization",
-    description: "Dynamic machine learning models that automatically adapt nutrition and workout advice to your actual habits."
+    title: "AI-Powered Personalization",
+    description:
+      "Receive personalized nutrition, wellness, and lifestyle recommendations tailored to your goals, preferences, and conversations."
   },
   {
     icon: <ShieldCheck size={24} />,
-    title: "Secure & Encrypted",
-    description: "Your health records are stored with end-to-end encryption. Your privacy is our top engineering priority."
+    title: "Private & Secure",
+    description:
+      "Your privacy matters. We use modern security practices and encrypted connections to help protect your personal information."
   },
   {
     icon: <HeartHandshake size={24} />,
-    title: "Expert Endorsed",
-    description: "Every algorithm and data point is cross-verified by professional dietitians, fitness coaches, and therapists."
+    title: "Evidence-Informed Guidance",
+    description:
+      "Our recommendations are designed using established nutrition and wellness principles to support healthier everyday choices."
   }
 ];
+
 
 const cardVariants = {
   hidden: { opacity: 0, y: 40, scale: 0.92 },
@@ -46,7 +51,7 @@ export default function About() {
 
       <div className="about-container">
         <div className="about-content-split">
-          
+
           {/* LEFT: Info Column */}
           <div className="about-info-col">
             <div className="about-tag">

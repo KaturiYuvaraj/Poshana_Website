@@ -56,10 +56,10 @@
 }
 
 .about-info-col h2 {
-  font-size: 40px;
+  font-size: 42px;
   font-weight: 800;
   color: var(--text-primary);
-  line-height: 1.15;
+  line-height: 1.1;
   letter-spacing: -1px;
   margin-bottom: 20px;
 }

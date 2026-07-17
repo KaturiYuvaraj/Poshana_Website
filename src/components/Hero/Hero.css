@@ -150,7 +150,7 @@
 }
 
 .hero-container {
-    width: min(1250px, 88%);
+    width: min(1200px, 90%);
     margin: 0 auto;
 
     display: flex;

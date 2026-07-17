@@ -5,20 +5,28 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const FAQS = [
   {
-    question: "How does Poshana protect my health data?",
-    answer: "We utilize end-to-end encryption for all bio-metrics and device synchronizations. Your records are stored on sandboxed on-device storage where possible, and securely encrypted databases elsewhere. We never sell your data to health insurance providers or advertisers."
+    question: "What is Poshana AI?",
+    answer: "Poshana AI is your intelligent nutrition companion that provides personalized meal recommendations, health insights, wellness guidance, and lifestyle suggestions based on your goals, preferences, and daily habits."
   },
   {
-    question: "Can I connect my smart wearables?",
-    answer: "Yes! Poshana offers full, direct synchronization with Apple HealthKit, Google Fit, Garmin Connect, Fitbit, and WHOOP. Data is polled in the background to seamlessly calculate active energy expenditure."
+    question: "How does Poshana personalize my nutrition plan?",
+    answer: "Our AI analyzes information such as your age, height, weight, activity level, dietary preferences, health goals, and eating habits to generate meal plans and recommendations tailored specifically to you."
   },
   {
-    question: "Is the AI advice safe and validated?",
-    answer: "Absolutely. All Poshana nutritional algorithms and physical exercise recommendations are constructed based on peer-reviewed clinical research and validated by our team of sports physiologists, dietitians, and sleep scientists."
+    question: "Is my personal health data secure?",
+    answer: "Yes. Your privacy is our priority. All personal information is securely encrypted and handled using industry-standard security practices. We never sell your personal health data to advertisers or third parties."
   },
   {
-    question: "How often does the engine recalibrate goals?",
-    answer: "The engine runs a daily calibration pass every morning. It processes your previous night's sleep score, average resting heart rate, active calories burned, and meal compliance inputs, and then updates your macro thresholds."
+    question: "Can I use Poshana if I have dietary restrictions or medical conditions?",
+    answer: "Absolutely. Poshana supports vegetarian, vegan, gluten-free, diabetic-friendly, and allergy-aware meal recommendations. However, our AI provides educational guidance and should not replace advice from qualified healthcare professionals."
+  },
+  {
+    question: "Does Poshana replace a dietitian or doctor?",
+    answer: "No. Poshana is designed to support healthier lifestyle choices through AI-powered guidance. It is not intended to diagnose, treat, or replace professional medical or nutritional advice."
+  },
+  {
+    question: "How often are my recommendations updated?",
+    answer: "Your recommendations continuously evolve as you log meals, track your progress, update your goals, and interact with Poshana AI, ensuring your nutrition plan stays relevant to your lifestyle."
   }
 ];
 
