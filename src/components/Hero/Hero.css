@@ -1,7 +1,7 @@
 .hero {
     position: relative;
-    min-height: 90vh;
-    padding: 100px 0 60px;
+    min-height: 100vh;
+    padding: 120px 0 80px;
     overflow: hidden;
     background: var(--bg-primary);
     display: flex;
@@ -260,11 +260,11 @@
 }
 
 .dashboard-phone {
-    max-width: 195px;
-    max-height: 440px;
+    max-width: 215px;
+    max-height: 470px;
     width: 100%;
     object-fit: contain;
-    border-radius: 36px;
+    border-radius: 38px;
     box-shadow:
         0 0 0 10px rgba(4, 4, 6, 0.97),
         0 0 0 12px rgba(239, 247, 30, 0.12),
