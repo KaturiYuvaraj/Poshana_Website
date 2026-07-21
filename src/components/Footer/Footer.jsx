@@ -314,24 +314,27 @@ export default function Footer() {
 
         <div className="footer-bottom">
 
-          <span className="footer-copy">
-            © {new Date().getFullYear()} Poshana.
-            All rights reserved.
-            Powered by AI. Built with{" "}
-            <HeartPulse
-              size={14}
-              className="heart-icon"
-            />{" "}
-            to inspire healthier living. Developed by{" "}
-            <a
-              href="https://spassociates.online/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="footer-dev-link"
-            >
-              S P Associates
-            </a>
-          </span>
+          <div className="footer-bottom-left">
+            <p className="footer-copy">
+              © {new Date().getFullYear()} Poshana. All rights reserved. Powered by AI. Built with{" "}
+              <HeartPulse
+                size={14}
+                className="heart-icon"
+              />{" "}
+              to inspire healthier living.
+            </p>
+            <p className="footer-developer">
+              Developed by{" "}
+              <a
+                href="https://spassociates.online/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="footer-dev-link"
+              >
+                S P Associates
+              </a>
+            </p>
+          </div>
 
           <div className="footer-bottom-links">
 
