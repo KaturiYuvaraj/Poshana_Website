@@ -25,16 +25,6 @@ export default function CtaModal({ isOpen, onClose, type = "signup" }) {
     setLoading(true);
 
     try {
-      // Check duplicate locally first (avoids unnecessary API calls)
-      const waitlist = JSON.parse(localStorage.getItem("poshana_waitlist") || "[]");
-      const alreadyExists = waitlist.some((entry) => entry.email === email.trim().toLowerCase());
-
-      if (alreadyExists) {
-        setError("This email is already on the waitlist!");
-        setLoading(false);
-        return;
-      }
-
       // Send welcome email via backend
       const res = await fetch(`${import.meta.env.VITE_API_URL}/waitlist`, {
         method: "POST",
