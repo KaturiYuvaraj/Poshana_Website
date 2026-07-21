@@ -73,7 +73,7 @@ export default function VoiceAssistant() {
 
             try {
                 // Use deployed backend URL directly (no local server needed)
-                const res = await fetch("https://poshanawebsite-production.up.railway.app/api/insights", {
+                const res = await fetch(`${import.meta.env.VITE_API_URL}/insights`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

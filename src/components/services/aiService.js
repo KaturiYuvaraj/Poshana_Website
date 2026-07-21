@@ -1,4 +1,4 @@
-const API = "https://poshanawebsite-production.up.railway.app/api/insights";
+const API = `${import.meta.env.VITE_API_URL}/insights`;
 
 export async function askAI(messages) {
 
