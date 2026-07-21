@@ -3,7 +3,6 @@ import { createPortal } from "react-dom";
 import "./CtaModal.css";
 import { X, CheckCircle, Sparkles, Send } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { supabase } from "../../lib/supabase";
 
 export default function CtaModal({ isOpen, onClose, type = "signup" }) {
   const [email, setEmail] = useState("");
@@ -27,32 +26,19 @@ export default function CtaModal({ isOpen, onClose, type = "signup" }) {
 
     try {
 
-      // Check duplicate email
+      // Check duplicate locally
+      const waitlist = JSON.parse(localStorage.getItem("poshana_waitlist") || "[]");
+      const alreadyExists = waitlist.some((entry) => entry.email === email.trim().toLowerCase());
 
-      const { data: existing } = await supabase
-        .from("Waitlist")
-        .select("id")
-        .eq("email", email)
-        .maybeSingle();
-
-      if (existing) {
+      if (alreadyExists) {
         setError("This email is already registered.");
         setLoading(false);
         return;
       }
 
-      // Save user
-
-      const { error } = await supabase
-        .from("Waitlist")
-        .insert([
-          {
-            email,
-            goal
-          }
-        ]);
-
-      if (error) throw error;
+      // Save locally
+      waitlist.push({ email: email.trim().toLowerCase(), goal, joinedAt: new Date().toISOString() });
+      localStorage.setItem("poshana_waitlist", JSON.stringify(waitlist));
 
       setSubmitted(true);
 
@@ -66,7 +52,6 @@ export default function CtaModal({ isOpen, onClose, type = "signup" }) {
     } catch (err) {
 
       console.error(err);
-
       setError("Something went wrong. Please try again.");
 
     } finally {
@@ -75,6 +60,7 @@ export default function CtaModal({ isOpen, onClose, type = "signup" }) {
 
     }
   };
+
 
   const modalContent = (
     <AnimatePresence>
