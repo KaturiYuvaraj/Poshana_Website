@@ -1,7 +1,7 @@
 .hero {
     position: relative;
-    min-height: 110vh;
-    padding: 70px 0 70px;
+    min-height: 90vh;
+    padding: 100px 0 60px;
     overflow: hidden;
     background: var(--bg-primary);
     display: flex;
@@ -260,14 +260,16 @@
 }
 
 .dashboard-phone {
-    max-width: 240px;
+    max-width: 195px;
+    max-height: 440px;
     width: 100%;
-    border-radius: 44px;
+    object-fit: contain;
+    border-radius: 36px;
     box-shadow:
-        0 0 0 12px rgba(4, 4, 6, 0.97),
-        0 0 0 14px rgba(239, 247, 30, 0.12),
-        0 40px 90px rgba(0, 0, 0, 0.7),
-        0 0 60px rgba(239, 247, 30, 0.08);
+        0 0 0 10px rgba(4, 4, 6, 0.97),
+        0 0 0 12px rgba(239, 247, 30, 0.12),
+        0 30px 70px rgba(0, 0, 0, 0.7),
+        0 0 45px rgba(239, 247, 30, 0.08);
     animation: phoneFloat 5s ease-in-out infinite;
     position: relative;
     z-index: 5;
@@ -672,10 +674,10 @@
 =========================== */
 .star-companion {
     position: absolute;
-    left: -200px;
-    bottom: 20px;
+    left: -130px;
+    bottom: 10px;
     top: auto;
-    width: 450px;
+    width: 320px;
     height: auto;
     z-index: 0;
     transform: rotate(-20deg);
