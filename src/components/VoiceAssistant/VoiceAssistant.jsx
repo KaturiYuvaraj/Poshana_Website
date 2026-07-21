@@ -1,6 +1,20 @@
-import { useState, useRef } from "react";
-import { Sparkles, X } from "lucide-react";
+import { useState, useRef, useEffect } from "react";
+import { X } from "lucide-react";
+import starIcon from "../../assets/icons/star.svg";
 import "./VoiceAssistant.css";
+
+const NUDGE_MESSAGES = [
+    "Talk with me! 💬",
+    "Ask me anything! ✨",
+    "How's your nutrition today? 🥗",
+    "Need a workout tip? 💪",
+    "I'm your wellness coach! 🧘",
+    "Tap me to get started 🌟",
+    "What's your fitness goal? 🎯",
+    "Let's chat about sleep! 😴",
+    "Ready to help you! 🚀",
+    "Ask about your diet plan 🍎",
+];
 
 export default function VoiceAssistant() {
     const [messages, setMessages] = useState([]);
@@ -11,6 +25,26 @@ export default function VoiceAssistant() {
     const [error, setError] = useState("");
 
     const recognitionRef = useRef(null);
+    const [nudge, setNudge] = useState(null);
+
+    // Random nudge messages when idle
+    useEffect(() => {
+        const show = () => {
+            const msg = NUDGE_MESSAGES[Math.floor(Math.random() * NUDGE_MESSAGES.length)];
+            setNudge(msg);
+            setTimeout(() => setNudge(null), 4000);
+        };
+
+        // First nudge after 3s
+        const initial = setTimeout(show, 3000);
+        // Then every 10s
+        const interval = setInterval(show, 10000);
+
+        return () => {
+            clearTimeout(initial);
+            clearInterval(interval);
+        };
+    }, []);
 
     const stopListening = () => {
         if (recognitionRef.current) {
@@ -230,13 +264,19 @@ export default function VoiceAssistant() {
                 </div>
             )}
 
+            {nudge && status === "idle" && !showPopup && (
+                <div className="voice-nudge">
+                    {nudge}
+                </div>
+            )}
+
             <button
                 className={`voice-orb ${status !== "idle" ? "active" : ""} voice-orb--${status}`}
                 onClick={startListening}
                 title="Talk to Poshana AI"
                 aria-label="Open voice assistant"
             >
-                <Sparkles size={26} />
+                <img src={starIcon} alt="Poshana AI" className="voice-orb-icon" />
             </button>
         </>
     );
