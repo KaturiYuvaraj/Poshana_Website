@@ -316,12 +316,7 @@ export default function Footer() {
 
           <div className="footer-bottom-left">
             <p className="footer-copy">
-              © {new Date().getFullYear()} Poshana. All rights reserved. Powered by AI. Built with{" "}
-              <HeartPulse
-                size={14}
-                className="heart-icon"
-              />{" "}
-              to inspire healthier living.
+              © {new Date().getFullYear()} Poshana. All rights reserved.
             </p>
             <p className="footer-developer">
               Developed by{" "}
@@ -333,6 +328,14 @@ export default function Footer() {
               >
                 S P Associates
               </a>
+            </p>
+            <p className="footer-copy">
+              Powered by AI. Built with{" "}
+              <HeartPulse
+                size={14}
+                className="heart-icon"
+              />{" "}
+              to inspire healthier living.
             </p>
           </div>
 
