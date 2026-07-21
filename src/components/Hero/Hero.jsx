@@ -21,18 +21,18 @@ export default function Hero({ onOpenModal }) {
 
         <div className="lightfall-layer">
           <Lightfall
-            colors={["#5EEAD4", "#34D399", "#E8FFF8"]}
-            backgroundColor="#002024"
+            colors={["#5EEAD4", "#34D399", "#007A8F"]}
+            backgroundColor="#00181b"
             speed={0.35}
             streakCount={3}
             streakWidth={1.4}
             streakLength={2.0}
-            glow={2.5}
+            glow={1.2}
             density={0.18}
             twinkle={0.8}
             zoom={3.0}
             backgroundGlow={0.0}
-            opacity={0.9}
+            opacity={0.45}
             mouseInteraction={false}
             dpr={Math.min(1.5, typeof window !== "undefined" ? window.devicePixelRatio || 1 : 1)}
           />

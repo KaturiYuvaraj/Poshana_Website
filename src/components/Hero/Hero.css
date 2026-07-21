@@ -170,19 +170,19 @@
     max-width: 620px;
     font-size: 68px;
     line-height: 1.05;
-    color: var(--text-primary);
+    color: #ffffff;
+    font-family: 'Sora', 'Inter', sans-serif;
+    font-weight: 800;
     animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
 }
 
 .hero-left h1 span {
     display: block;
-    background: linear-gradient(90deg,
-            var(--poshana-accent),
-            #B9FFF0,
-            #52FFC9);
-
+    background: linear-gradient(90deg, #EFFF1E 0%, #34D399 50%, #52FFC9 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
+    color: #EFFF1E;
 }
 
 .hero-heading::before {
