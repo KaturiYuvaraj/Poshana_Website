@@ -15,6 +15,7 @@ const GOAL_CONTENT = {
                 <li>💡 Daily nutrition tips from your personal AI coach</li>
             </ul>
         `,
+        textBody: `You've joined Poshana focused on Nutrition.\n\nHere's what's coming your way:\n- AI-powered meal plans\n- Macro & calorie tracking\n- Smart grocery lists\n- Daily nutrition tips`,
         color: "#4caf50",
     },
     fitness: {
@@ -31,6 +32,7 @@ const GOAL_CONTENT = {
                 <li>🔥 Adaptive plans that grow as you do</li>
             </ul>
         `,
+        textBody: `You've joined Poshana focused on Fitness.\n\nHere's what's coming your way:\n- Custom workout plans\n- Progress tracking\n- Exercise guides\n- Adaptive growth plans`,
         color: "#ff7043",
     },
     sleep: {
@@ -47,6 +49,7 @@ const GOAL_CONTENT = {
                 <li>⏰ Smart wake-up strategies for natural energy</li>
             </ul>
         `,
+        textBody: `You've joined Poshana focused on Sleep.\n\nHere's what's coming your way:\n- Personalized sleep schedules\n- Wind-down routines\n- Sleep quality analysis\n- Smart wake-up strategies`,
         color: "#5c6bc0",
     },
     mindfulness: {
@@ -63,6 +66,7 @@ const GOAL_CONTENT = {
                 <li>💆 Breathwork exercises for instant calm</li>
             </ul>
         `,
+        textBody: `You've joined Poshana focused on Mindfulness.\n\nHere's what's coming your way:\n- Guided meditation sessions\n- Stress management techniques\n- Mindful journaling prompts\n- Breathwork exercises`,
         color: "#ab47bc",
     },
 };
@@ -98,8 +102,8 @@ const buildEmailHTML = (email, goal) => {
                         <td style="padding:40px 48px;">
                             <h2 style="margin:0 0 16px;font-size:22px;font-weight:700;color:#e8f5ee;line-height:1.3;">${content.title}</h2>
                             <p style="margin:0 0 20px;font-size:15px;color:#7aab8a;line-height:1.7;">
-                                Hey there! 👋 You're officially on the <strong style="color:#efff1e;">Poshana early access waitlist</strong>. 
-                                We're thrilled to have you join thousands of people transforming their wellness with AI.
+                                Hey there! You are officially on the <strong style="color:#efff1e;">Poshana early access waitlist</strong>. 
+                                We are thrilled to have you join us.
                             </p>
 
                             <!-- Goal badge -->
@@ -117,7 +121,7 @@ const buildEmailHTML = (email, goal) => {
                             <div style="text-align:center;margin:36px 0 0;">
                                 <a href="https://poshana.netlify.app" 
                                    style="display:inline-block;background:#efff1e;color:#0a0f0d;font-size:15px;font-weight:700;text-decoration:none;padding:14px 36px;border-radius:50px;letter-spacing:0.3px;">
-                                    Visit Poshana →
+                                    Visit Poshana Website
                                 </a>
                             </div>
                         </td>
@@ -127,7 +131,7 @@ const buildEmailHTML = (email, goal) => {
                     <tr>
                         <td style="background:#0d1a12;padding:28px 48px;border-top:1px solid #1e3329;text-align:center;">
                             <p style="margin:0;font-size:12px;color:#3d6b4f;line-height:1.7;">
-                                You're receiving this because you signed up at <a href="https://poshana.netlify.app" style="color:#5a8a6a;">poshana.netlify.app</a><br/>
+                                You are receiving this email because you registered at poshana.netlify.app<br/>
                                 © 2025 Poshana · All rights reserved
                             </p>
                         </td>
@@ -155,11 +159,15 @@ export const sendWaitlistEmail = async (req, res) => {
         const resend = new Resend(process.env.RESEND_API_KEY);
         const content = GOAL_CONTENT[goalKey] || GOAL_CONTENT.nutrition;
 
+        const plainText = `Welcome to Poshana!\n\n${content.title}\n\n${content.textBody}\n\nVisit Poshana: https://poshana.netlify.app`;
+
         const data = await resend.emails.send({
             from: "Poshana AI <onboarding@resend.dev>",
             to: [email.trim()],
+            replyTo: "yuvakaturi24@gmail.com",
             subject: `${content.emoji} Welcome to Poshana — You're on the list!`,
             html: buildEmailHTML(email, goalKey),
+            text: plainText,
         });
 
         if (data.error) {
