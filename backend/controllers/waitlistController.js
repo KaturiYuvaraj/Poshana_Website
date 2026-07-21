@@ -52,7 +52,7 @@ const GOAL_CONFIG = {
     fitness: {
         name: "Fitness",
         emoji: "💪",
-        badge: "💪 Adaptive AI Fitness",
+        badge: "💪 Adaptive Fitness Coaching",
         color: "#ff7043",
         accentGradient: "linear-gradient(135deg, #3d1e16 0%, #210e09 100%)",
         quotes: [
@@ -146,7 +146,7 @@ const GOAL_CONFIG = {
     mindfulness: {
         name: "Mind",
         emoji: "🧘",
-        badge: "🧘 AI Mind & Mindfulness",
+        badge: "🧘 Mind & Mindfulness",
         color: "#ab47bc",
         accentGradient: "linear-gradient(135deg, #321838 0%, #1a0a1f 100%)",
         quotes: [
@@ -244,7 +244,7 @@ const buildEmailHTML = (email, goalKey) => {
                             
                             <!-- Poshana Logo Badge -->
                             <div style="display:inline-block;background:rgba(239, 255, 30, 0.1);border:1px solid rgba(239, 255, 30, 0.25);border-radius:50px;padding:6px 18px;margin-bottom:18px;">
-                                <span style="font-size:12px;font-weight:700;letter-spacing:2px;color:#efff1e;text-transform:uppercase;">POSHANA AI WELCOME</span>
+                                <span style="font-size:12px;font-weight:700;letter-spacing:2px;color:#efff1e;text-transform:uppercase;">POSHANA WELCOME</span>
                             </div>
 
                             <!-- Main Title -->
@@ -385,10 +385,10 @@ const buildEmailHTML = (email, goalKey) => {
                             </div>
 
 
-                            <!-- AI GENERATED MOTIVATION SECTION -->
+                            <!-- DAILY MOTIVATION SECTION -->
                             <div style="background:rgba(13, 38, 27, 0.75);border-left:4px solid #efff1e;border-radius:14px;padding:18px 22px;margin-bottom:32px;">
                                 <div style="font-size:12px;font-weight:800;color:#efff1e;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">
-                                    🤖 AI Generated Motivation
+                                    ✨ Daily Motivation
                                 </div>
                                 <p style="margin:0;font-size:14px;color:#e2e8f0;font-style:italic;line-height:1.6;">
                                     "${quote}"
@@ -413,12 +413,12 @@ const buildEmailHTML = (email, goalKey) => {
                         <td style="background:#09120e;padding:28px 32px;border-top:1px solid #1e3a2b;text-align:center;">
                             
                             <p style="margin:0 0 10px;font-size:14px;font-weight:700;color:#efff1e;">
-                                Made with ❤️ by Poshana AI
+                                Made with ❤️ by Poshana
                             </p>
 
                             <p style="margin:0;font-size:12px;color:#475569;line-height:1.6;">
                                 You are receiving this email because you signed up at poshana.netlify.app<br/>
-                                © 2026 Poshana AI · All rights reserved
+                                © 2026 Poshana · All rights reserved
                             </p>
 
                         </td>
@@ -448,10 +448,10 @@ export const sendWaitlistEmail = async (req, res) => {
         const resend = new Resend(process.env.RESEND_API_KEY || "dummy_key");
         const { config } = getDynamicEmailData(goalKey);
 
-        const plainText = `✨ Welcome to Poshana!\nYour personalized wellness journey starts today.\n\nFocus: ${config.name}\nOpen Poshana: https://poshana.netlify.app\n\nMade with ❤️ by Poshana AI`;
+        const plainText = `✨ Welcome to Poshana!\nYour personalized wellness journey starts today.\n\nFocus: ${config.name}\nOpen Poshana: https://poshana.netlify.app\n\nMade with ❤️ by Poshana`;
 
         const data = await resend.emails.send({
-            from: "Poshana AI <onboarding@resend.dev>",
+            from: "Poshana <onboarding@resend.dev>",
             to: [email.trim()],
             replyTo: "info@poshana.live",
             subject: `${config.emoji} ✨ Welcome to Poshana — Your Personalized ${config.name} Journey!`,
