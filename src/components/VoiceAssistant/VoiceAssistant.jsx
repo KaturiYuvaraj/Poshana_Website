@@ -47,6 +47,7 @@ export default function VoiceAssistant() {
         recognition.interimResults = false;
         recognition.maxAlternatives = 1;
         recognition.continuous = false;
+        recognition.speechRecognitionTimeout = 10000; // give 10s
 
         setIsActive(true);
         setStatus("listening");
@@ -71,8 +72,8 @@ export default function VoiceAssistant() {
             ];
 
             try {
-                // Always use relative path — Vite proxy forwards to backend (avoids CORS)
-                const res = await fetch("/api/insights", {
+                // Use deployed backend URL directly (no local server needed)
+                const res = await fetch("https://poshanawebsite-production.up.railway.app/api/insights", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
@@ -126,7 +127,7 @@ export default function VoiceAssistant() {
 
             } catch (err) {
                 console.error("Voice assistant error:", err);
-                const errMsg = "Sorry, I couldn't process your request. Please check the backend is running.";
+                const errMsg = "Sorry, I couldn't process your request. Please try again later.";
                 setReply(errMsg);
                 setError(err.message);
                 setStatus("error");
@@ -137,12 +138,18 @@ export default function VoiceAssistant() {
             console.error("Speech recognition error:", event.error);
             if (event.error === "not-allowed") {
                 setError("Microphone access denied. Please allow microphone permissions.");
+                setStatus("error");
             } else if (event.error === "no-speech") {
-                setError("No speech detected. Please try again.");
+                // Silently restart — user just didn't speak in time
+                setError("");
+                setStatus("listening");
+                try { recognition.start(); } catch (_) {}
+            } else if (event.error === "aborted") {
+                // User or code stopped it — ignore
             } else {
                 setError(`Recognition error: ${event.error}`);
+                setStatus("error");
             }
-            setStatus("error");
         };
 
         recognition.onend = () => {

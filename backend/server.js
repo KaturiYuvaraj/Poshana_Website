@@ -9,14 +9,9 @@ console.log("Groq Key loaded:", !!process.env.GROQ_API_KEY);
 
 const app = express();
 
-// Allow requests from local frontend dev server and production
+// Allow all origins (local dev + deployed frontend)
 app.use(cors({
-    origin: [
-        "http://localhost:5173",
-        "http://localhost:3000",
-        "http://127.0.0.1:5173",
-        process.env.FRONTEND_URL,
-    ].filter(Boolean),
+    origin: "*",
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
 }));
