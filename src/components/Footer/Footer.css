@@ -258,6 +258,18 @@
   color: #fc8181;
 }
 
+.footer-dev-link {
+  color: var(--poshana-accent, #EFFF1E);
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s ease, text-decoration 0.2s ease;
+}
+
+.footer-dev-link:hover {
+  text-decoration: underline;
+  opacity: 0.9;
+}
+
 .footer-bottom-links {
   display: flex;
   gap: 22px;

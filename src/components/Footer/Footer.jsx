@@ -322,7 +322,15 @@ export default function Footer() {
               size={14}
               className="heart-icon"
             />{" "}
-            to inspire healthier living.
+            to inspire healthier living. Developed by{" "}
+            <a
+              href="https://spassociates.online/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer-dev-link"
+            >
+              S P Associates
+            </a>
           </span>
 
           <div className="footer-bottom-links">
