@@ -38,7 +38,8 @@ export default function CtaModal({ isOpen, onClose, type = "signup" }) {
         throw new Error(data.message || "Something went wrong.");
       }
 
-      // Save locally to prevent duplicates on same device
+      // Save locally to record submission
+      const waitlist = JSON.parse(localStorage.getItem("poshana_waitlist") || "[]");
       waitlist.push({ email: email.trim().toLowerCase(), goal, joinedAt: new Date().toISOString() });
       localStorage.setItem("poshana_waitlist", JSON.stringify(waitlist));
 
