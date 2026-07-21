@@ -110,8 +110,8 @@ export default function Features() {
                             </button>
                         </div>
 
-                        <div className="dashboard-phone-wrapper">
-                            <img src={appScreen} alt="Poshana Dashboard" className="dashboard-phone" />
+                        <div className="features-phone-wrapper">
+                            <img src={appScreen} alt="Poshana Dashboard" className="features-phone" />
                         </div>
 
                         {/* Stats */}

@@ -162,14 +162,14 @@
 }
 
 /* ── Phone mockup ── */
-.dashboard-phone-wrapper {
+.features-phone-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
 }
 
-.dashboard-phone-wrapper::before {
+.features-phone-wrapper::before {
     content: '';
     position: absolute;
     bottom: -20px;
@@ -182,7 +182,7 @@
     filter: blur(10px);
 }
 
-.dashboard-phone {
+.features-phone {
     max-width: 300px;
     width: 100%;
     border-radius: 44px;
@@ -398,7 +398,7 @@
         justify-content: center;
     }
 
-    .dashboard-phone {
+    .features-phone {
         max-width: 260px;
     }
 }
