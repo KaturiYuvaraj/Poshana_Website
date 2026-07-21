@@ -3,21 +3,77 @@ import { createPortal } from "react-dom";
 import "./CtaModal.css";
 import { X, CheckCircle, Sparkles, Send } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { supabase } from "../../lib/supabase";
 
 export default function CtaModal({ isOpen, onClose, type = "signup" }) {
   const [email, setEmail] = useState("");
   const [goal, setGoal] = useState("nutrition");
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!email) return;
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setEmail("");
-      onClose();
-    }, 2500);
+
+    setError("");
+
+    if (!email.trim()) {
+      setError("Please enter your email.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+
+      // Check duplicate email
+
+      const { data: existing } = await supabase
+        .from("Waitlist")
+        .select("id")
+        .eq("email", email)
+        .maybeSingle();
+
+      if (existing) {
+        setError("This email is already registered.");
+        setLoading(false);
+        return;
+      }
+
+      // Save user
+
+      const { error } = await supabase
+        .from("Waitlist")
+        .insert([
+          {
+            email,
+            goal
+          }
+        ]);
+
+      if (error) throw error;
+
+      setSubmitted(true);
+
+      setTimeout(() => {
+        setSubmitted(false);
+        setEmail("");
+        setGoal("nutrition");
+        onClose();
+      }, 2500);
+
+    } catch (err) {
+
+      console.error(err);
+
+      setError("Something went wrong. Please try again.");
+
+    } finally {
+
+      setLoading(false);
+
+    }
   };
 
   const modalContent = (
@@ -77,6 +133,11 @@ export default function CtaModal({ isOpen, onClose, type = "signup" }) {
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                         />
+                        {error && (
+                          <span className="form-error">
+                            {error}
+                          </span>
+                        )}
                       </div>
 
                       <div className="modal-form-group">
@@ -84,8 +145,8 @@ export default function CtaModal({ isOpen, onClose, type = "signup" }) {
                         <div className="goal-chips">
                           {[
                             { id: "nutrition", label: "🥗 Nutrition" },
-                            { id: "fitness",   label: "💪 Fitness" },
-                            { id: "sleep",     label: "😴 Sleep" },
+                            { id: "fitness", label: "💪 Fitness" },
+                            { id: "sleep", label: "😴 Sleep" },
                             { id: "mindfulness", label: "🧘 Mind" }
                           ].map((g) => (
                             <button
@@ -100,8 +161,14 @@ export default function CtaModal({ isOpen, onClose, type = "signup" }) {
                         </div>
                       </div>
 
-                      <button type="submit" className="submit-btn">
-                        Get Early Access <Send size={16} />
+                      <button
+                        type="submit"
+                        className="submit-btn"
+                        disabled={loading}
+                      >
+                        {loading ? "Joining..." : "Get Early Access"}
+
+                        {!loading && <Send size={16} />}
                       </button>
                     </form>
                   </>

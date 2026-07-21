@@ -6,37 +6,38 @@ import { motion, AnimatePresence } from "framer-motion";
 const STEPS = [
   {
     day: "Day 1",
-    title: "Smart Onboarding",
-    tagline: "Initialize Your Profile",
+    title: "Personalized Setup",
+    tagline: "Build Your Daily Routine",
     icon: <Calendar size={20} />,
-    description: "Submit baseline biometrics, connect smart wearable devices (Apple Health, Garmin, Fitbit), and outline your specific nutritional and physical goals.",
-    metrics: ["10m Setup", "15+ Data Sources", "Bio-profile locked"]
+    description: "Set your age, lifestyle, and goals. Poshana builds your full daily schedule — wake-up time, breakfast, lunch, evening snack, dinner, meditation, and bedtime — each tied to points in your Score Card.",
+    metrics: ["Wake-up time set (+15 pts)", "Meals & workout scheduled", "Score Card activated"]
   },
   {
     day: "Day 7",
-    title: "AI Optimization",
-    tagline: "Custom Food & Routine Calibrations",
+    title: "Earn Your Daily Score",
+    tagline: "Complete Activities, Rack Up Points",
     icon: <Sparkles size={20} />,
-    description: "Receive your first AI-formulated nutrition plans and workout schedules. The system starts analyzing caloric outcomes based on actual heart rate and sleep data.",
-    metrics: ["Real-time adaptive macro charts", "4 custom weekly workouts", "Melatonin timing"]
+    description: "Each day, complete your scheduled activities and earn points. Wake up on time (15 pts), log your workout, breakfast, lunch, snack, dinner, meditation, and bedtime — each worth 10 points toward your daily score.",
+    metrics: ["Up to 95 pts per day", "8 scoreable activities", "Smart reminders per activity"]
   },
   {
     day: "Day 14",
-    title: "Habit Alignment",
-    tagline: "Behavioral Adjustments",
+    title: "Track Your Consistency",
+    tagline: "Weekly Score Card & Analytics",
     icon: <Activity size={20} />,
-    description: "Incorporate specialized micro-goals, track daily hydration levels, and receive dynamic coaching messages as habit loops begin locking into place.",
-    metrics: ["Hydration targets", "85% compliance warning", "Sleep window lock"]
+    description: "Open your Score Card to see today's total score (e.g. 95 — Good Score) and review your week's streak on the calendar. The Analytics tab shows your progress trends so you can see which habits are sticking.",
+    metrics: ["Daily score with rating", "Weekly calendar streak", "Analytics progress chart"]
   },
   {
     day: "Day 30",
-    title: "Visible Transformation",
-    tagline: "Quantifiable Progress Review",
+    title: "Habits Locked In",
+    tagline: "Real Consistency, Real Results",
     icon: <CheckSquare size={20} />,
-    description: "Review detailed metabolic metrics. Most active users observe noticeable improvements in resting heart rate, active recovery rates, sleep scores, and body composition.",
-    metrics: ["Resting HR drop ~4bpm", "+15% Sleep Efficiency", "Fat-mass reduction reports"]
+    description: "After 30 days of building points, your healthy routine feels automatic. Access professional nutritionist support on-demand and stay consistent — you're on track to unlock Poshana Rewards at the 90-day milestone.",
+    metrics: ["Solid daily habit streak", "Nutritionist access", "90-day Rewards on track"]
   }
 ];
+
 
 export default function Journey() {
   const [activeStep, setActiveStep] = useState(0);
@@ -54,7 +55,7 @@ export default function Journey() {
           </div>
           <h2>Your 30-Day Evolution Path</h2>
           <p>
-            Experience a step-by-step roadmap showing how Poshana's AI adapts to your body and transforms your health from day one.
+            A step-by-step roadmap showing how Poshana shapes your meals, routines, and habits — so healthy living becomes second nature by day 30.
           </p>
         </div>
 

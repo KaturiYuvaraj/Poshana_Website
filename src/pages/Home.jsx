@@ -11,12 +11,14 @@ import Download from "../components/Download/Download";
 import Footer from "../components/Footer/Footer";
 import CtaModal from "../components/CtaModal/CtaModal";
 import Preloader from "../components/Preloader/Preloader";
+import VoiceAssistant from "../components/VoiceAssistant/VoiceAssistant";
 import { useEffect, useState } from "react";
 import { useScrollAnimations } from "../hooks/useScrollAnimations";
 
 export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalType, setModalType] = useState("signup");
+  const [preloaderDone, setPreloaderDone] = useState(false);
 
   useScrollAnimations();
 
@@ -41,7 +43,7 @@ export default function Home() {
 
   return (
     <main>
-      <Preloader />
+      <Preloader onDone={() => setPreloaderDone(true)} />
       <Navbar onOpenModal={openModal} />
 
       <Hero onOpenModal={openModal} />
@@ -51,6 +53,8 @@ export default function Home() {
       <Features />
 
       <AISection />
+
+      {preloaderDone && <VoiceAssistant />}
 
       <About />
 

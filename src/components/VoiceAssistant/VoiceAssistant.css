@@ -1,0 +1,354 @@
+/* ─── Orb ─── */
+.voice-orb {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+
+    width: 72px;
+    height: 72px;
+
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: rgba(10, 10, 10, .88);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    border: 1px solid rgba(239, 255, 30, .18);
+
+    color: #efff1e;
+
+    z-index: 99999;
+
+    transition: .35s ease;
+
+    box-shadow:
+        0 0 30px rgba(239, 255, 30, .12),
+        inset 0 0 20px rgba(239, 255, 30, .08);
+}
+
+.voice-orb svg {
+    transition: .35s;
+    animation: floatStar 3s ease infinite;
+}
+
+.voice-orb:hover {
+    transform: translateY(-5px) scale(1.06);
+
+    box-shadow:
+        0 0 55px rgba(239, 255, 30, .35),
+        inset 0 0 20px rgba(239, 255, 30, .15);
+}
+
+.voice-orb:hover svg {
+    transform: rotate(15deg) scale(1.15);
+}
+
+.voice-orb.active,
+.voice-orb--listening {
+    animation: listeningPulse 1.1s infinite;
+}
+
+.voice-orb--thinking {
+    animation: thinkingPulse 1.6s ease infinite !important;
+}
+
+.voice-orb--speaking {
+    animation: speakingPulse 0.8s ease infinite !important;
+}
+
+.voice-orb--error {
+    border-color: rgba(255, 80, 80, .45) !important;
+    box-shadow:
+        0 0 30px rgba(255, 80, 80, .25),
+        inset 0 0 20px rgba(255, 80, 80, .1) !important;
+    color: #ff6b6b !important;
+}
+
+/* ─── Popup ─── */
+.voice-popup {
+    position: fixed;
+
+    right: 32px;
+    bottom: 120px;
+
+    width: 360px;
+
+    /* Prevent overflow beyond viewport */
+    max-height: 65vh;
+
+    display: flex;
+    flex-direction: column;
+
+    background: rgba(12, 12, 12, .92);
+
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+
+    border: 1px solid rgba(239, 255, 30, .12);
+
+    border-radius: 24px;
+
+    padding: 0;
+
+    color: white;
+
+    z-index: 99998;
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, .45);
+
+    animation: popup .35s ease;
+    overflow: hidden;
+}
+
+/* Fixed header area (title + status) */
+.voice-popup-top {
+    padding: 22px 22px 0 22px;
+    flex-shrink: 0;
+}
+
+/* Scrollable content area */
+.voice-popup-body {
+    padding: 0 22px 22px 22px;
+    overflow-y: auto;
+    flex: 1;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(239, 255, 30, .25) transparent;
+}
+
+.voice-popup-body::-webkit-scrollbar {
+    width: 4px;
+}
+
+.voice-popup-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.voice-popup-body::-webkit-scrollbar-thumb {
+    background: rgba(239, 255, 30, .25);
+    border-radius: 4px;
+}
+
+/* ─── Popup Header ─── */
+.voice-popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.voice-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #efff1e;
+}
+
+.voice-close-btn {
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #aaa;
+    transition: .2s ease;
+    padding: 0;
+    flex-shrink: 0;
+}
+
+.voice-close-btn:hover {
+    background: rgba(255, 80, 80, .15);
+    border-color: rgba(255, 80, 80, .3);
+    color: #ff6b6b;
+}
+
+/* ─── Status Badge ─── */
+.voice-status {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 7px 14px;
+
+    border-radius: 999px;
+
+    background: rgba(239, 255, 30, .08);
+
+    border: 1px solid rgba(239, 255, 30, .18);
+
+    color: #efff1e;
+
+    font-size: 12px;
+
+    text-transform: capitalize;
+
+    margin-bottom: 18px;
+
+    transition: background .3s, border-color .3s, color .3s;
+}
+
+.voice-status--listening {
+    background: rgba(31, 231, 194, .1);
+    border-color: rgba(31, 231, 194, .3);
+    color: #1fe7c2;
+}
+
+.voice-status--thinking {
+    background: rgba(150, 100, 255, .1);
+    border-color: rgba(150, 100, 255, .3);
+    color: #b48fff;
+}
+
+.voice-status--speaking {
+    background: rgba(80, 180, 255, .1);
+    border-color: rgba(80, 180, 255, .3);
+    color: #66c2ff;
+}
+
+.voice-status--error {
+    background: rgba(255, 80, 80, .08);
+    border-color: rgba(255, 80, 80, .25);
+    color: #ff6b6b;
+}
+
+/* ─── Popup Text ─── */
+.voice-popup p {
+    margin-top: 14px;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #d8d8d8;
+}
+
+.voice-popup strong {
+    color: white;
+}
+
+.voice-error {
+    font-size: 13px !important;
+    color: #ff8080 !important;
+    background: rgba(255, 80, 80, .07);
+    border: 1px solid rgba(255, 80, 80, .18);
+    border-radius: 10px;
+    padding: 8px 12px;
+    margin-top: 8px !important;
+}
+
+.voice-hint {
+    font-size: 12px !important;
+    color: #555 !important;
+    margin-top: 16px !important;
+    text-align: center;
+}
+
+/* ─── Thinking Dots ─── */
+.voice-thinking {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    margin-top: 14px;
+    padding: 4px 0;
+}
+
+.voice-thinking span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #b48fff;
+    animation: thinkingDot 1.2s ease infinite;
+}
+
+.voice-thinking span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.voice-thinking span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+/* ─── Animations ─── */
+@keyframes popup {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes listeningPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 30px rgba(239, 255, 30, .15);
+    }
+    50% {
+        transform: scale(1.15);
+        box-shadow: 0 0 80px rgba(31, 231, 194, .75);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 30px rgba(239, 255, 30, .15);
+    }
+}
+
+@keyframes thinkingPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 30px rgba(150, 100, 255, .2);
+    }
+    50% {
+        transform: scale(1.08);
+        box-shadow: 0 0 60px rgba(150, 100, 255, .6);
+    }
+}
+
+@keyframes speakingPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 30px rgba(80, 180, 255, .2);
+    }
+    50% {
+        transform: scale(1.1);
+        box-shadow: 0 0 60px rgba(80, 180, 255, .55);
+    }
+}
+
+@keyframes floatStar {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-4px); }
+}
+
+@keyframes thinkingDot {
+    0%, 100% { opacity: 0.2; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+    .voice-orb {
+        right: 20px;
+        bottom: 20px;
+        width: 65px;
+        height: 65px;
+    }
+
+    .voice-popup {
+        right: 20px;
+        left: 20px;
+        width: auto;
+        bottom: 100px;
+    }
+}

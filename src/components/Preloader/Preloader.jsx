@@ -6,7 +6,7 @@ import './Preloader.css';
 
 const rand = (min, max) => Math.random() * (max - min) + min;
 
-export default function Preloader() {
+export default function Preloader({ onDone }) {
   const containerRef = useRef(null);
   const logoRef = useRef(null);
   const [isGone, setIsGone] = useState(false);
@@ -41,6 +41,7 @@ export default function Preloader() {
                 // Restore scrolling
                 document.body.style.overflow = '';
                 setIsGone(true);
+                if (onDone) onDone();
               }
             });
           }
