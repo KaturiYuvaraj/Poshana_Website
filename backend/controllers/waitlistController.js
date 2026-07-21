@@ -461,6 +461,22 @@ export const sendWaitlistEmail = async (req, res) => {
 
         if (data.error) {
             console.error("❌ Resend error:", data.error);
+
+            // Handle Resend testing restriction gracefully (when using onboarding@resend.dev to external emails)
+            const isTestingRestriction = data.error.message && (
+                data.error.message.includes("testing emails") ||
+                data.error.message.includes("verify a domain")
+            );
+
+            if (isTestingRestriction) {
+                console.warn(`⚠️ [Resend Test Mode] Recipient ${email} is external. Signup recorded successfully.`);
+                return res.json({
+                    success: true,
+                    message: "Welcome to Poshana!",
+                    isTestMode: true
+                });
+            }
+
             return res.status(500).json({ success: false, message: data.error.message || "Failed to send email." });
         }
 
@@ -469,6 +485,16 @@ export const sendWaitlistEmail = async (req, res) => {
 
     } catch (error) {
         console.error("❌ Email send failed:", error.message);
+        
+        const isTestingRestriction = error.message && (
+            error.message.includes("testing emails") ||
+            error.message.includes("verify a domain")
+        );
+
+        if (isTestingRestriction) {
+            return res.json({ success: true, message: "Welcome to Poshana!" });
+        }
+
         return res.status(500).json({ success: false, message: "Failed to send email. Please try again." });
     }
 };
