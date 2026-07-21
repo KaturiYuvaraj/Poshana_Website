@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 
 import insightRoutes from "./routes/insights.js";
+import waitlistRoutes from "./routes/waitlist.js";
 
 dotenv.config();
 console.log("Groq Key loaded:", !!process.env.GROQ_API_KEY);
@@ -19,6 +20,7 @@ app.use(cors({
 app.use(express.json());
 
 app.use("/api/insights", insightRoutes);
+app.use("/api/waitlist", waitlistRoutes);
 
 app.get("/", (req, res) => {
     res.send("Poshana Backend Running ✅");

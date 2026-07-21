@@ -25,18 +25,30 @@ export default function CtaModal({ isOpen, onClose, type = "signup" }) {
     setLoading(true);
 
     try {
-
-      // Check duplicate locally
+      // Check duplicate locally first (avoids unnecessary API calls)
       const waitlist = JSON.parse(localStorage.getItem("poshana_waitlist") || "[]");
       const alreadyExists = waitlist.some((entry) => entry.email === email.trim().toLowerCase());
 
       if (alreadyExists) {
-        setError("This email is already registered.");
+        setError("This email is already on the waitlist!");
         setLoading(false);
         return;
       }
 
-      // Save locally
+      // Send welcome email via backend
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/waitlist`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim(), goal }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || "Something went wrong.");
+      }
+
+      // Save locally to prevent duplicates on same device
       waitlist.push({ email: email.trim().toLowerCase(), goal, joinedAt: new Date().toISOString() });
       localStorage.setItem("poshana_waitlist", JSON.stringify(waitlist));
 
@@ -50,16 +62,13 @@ export default function CtaModal({ isOpen, onClose, type = "signup" }) {
       }, 2500);
 
     } catch (err) {
-
       console.error(err);
-      setError("Something went wrong. Please try again.");
-
+      setError(err.message || "Something went wrong. Please try again.");
     } finally {
-
       setLoading(false);
-
     }
   };
+
 
 
   const modalContent = (
