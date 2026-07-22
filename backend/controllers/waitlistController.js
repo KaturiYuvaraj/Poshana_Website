@@ -544,7 +544,7 @@ export const sendWaitlistEmail = async (req, res) => {
         const plainText = `✨ Welcome to Poshana!\nYour personalized wellness journey starts today.\n\nFocus: ${config.name}\nOpen Poshana: https://poshana.netlify.app\n\nMade with ❤️ by Poshana`;
 
         const data = await resend.emails.send({
-            from: "Poshana <onboarding@resend.dev>",
+            from: "Poshana <info@poshana.live>",
             to: [email.trim()],
             replyTo: "info@poshana.live",
             subject: `${config.emoji} ✨ Welcome to Poshana — Your Personalized ${config.name} Journey!`,
