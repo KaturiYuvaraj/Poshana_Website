@@ -549,7 +549,10 @@ export const sendWaitlistEmail = async (req, res) => {
         const data = await resend.emails.send({
             from: "Poshana <no-reply@poshana.live>",
             to: [email.trim()],
-            replyTo: "no-reply@poshana.live",
+            headers: {
+                "Auto-Submitted": "auto-generated",
+                "X-Auto-Response-Suppress": "All",
+            },
             subject: `${config.emoji} ✨ Welcome to Poshana — Your Personalized ${config.name} Journey!`,
             html: buildEmailHTML(email, goalKey),
             text: plainText,
@@ -581,7 +584,7 @@ export const sendWaitlistEmail = async (req, res) => {
 
     } catch (error) {
         console.error("❌ Email send failed:", error.message);
-        
+
         const isTestingRestriction = error.message && (
             error.message.includes("testing emails") ||
             error.message.includes("verify a domain")
