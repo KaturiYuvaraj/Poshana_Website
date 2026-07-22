@@ -513,6 +513,9 @@ const buildEmailHTML = (email, goalKey) => {
                                 You are receiving this email because you signed up at poshana.netlify.app<br/>
                                 © 2026 Poshana · All rights reserved
                             </p>
+                            <p style="margin:10px 0 0;font-size:11.5px;color:#475569;">
+                                Please do not reply to this email as this inbox is not monitored.
+                            </p>
 
                         </td>
                     </tr>
@@ -541,12 +544,12 @@ export const sendWaitlistEmail = async (req, res) => {
         const resend = new Resend(process.env.RESEND_API_KEY || "dummy_key");
         const { config } = getDynamicEmailData(goalKey);
 
-        const plainText = `✨ Welcome to Poshana!\nYour personalized wellness journey starts today.\n\nFocus: ${config.name}\nOpen Poshana: https://poshana.netlify.app\n\nMade with ❤️ by Poshana`;
+        const plainText = `✨ Welcome to Poshana!\nYour personalized wellness journey starts today.\n\nFocus: ${config.name}\nOpen Poshana: https://poshana.netlify.app\n\nMade with ❤️ by Poshana\n\nPlease do not reply to this email as this inbox is not monitored.`;
 
         const data = await resend.emails.send({
-            from: "Poshana <info@poshana.live>",
+            from: "Poshana <no-reply@poshana.live>",
             to: [email.trim()],
-            replyTo: "info@poshana.live",
+            replyTo: "no-reply@poshana.live",
             subject: `${config.emoji} ✨ Welcome to Poshana — Your Personalized ${config.name} Journey!`,
             html: buildEmailHTML(email, goalKey),
             text: plainText,
