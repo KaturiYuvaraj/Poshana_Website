@@ -65,6 +65,7 @@ export default function Hero({ onOpenModal }) {
           {/* Mobile Mockup (Visible only on mobile/tablet < 992px) */}
           <div className="mobile-mockup-container">
             <div className="dashboard-phone-wrapper">
+              <div className="star-glow-backdrop"></div>
               <img src={starIcon} alt="Star Companion" className="star-companion" />
               <img src={appScreen} alt="Poshana Dashboard" className="dashboard-phone" />
             </div>
@@ -106,6 +107,7 @@ export default function Hero({ onOpenModal }) {
         <div className="hero-right">
 
           <div className="phone-wrapper">
+            <div className="star-glow-backdrop"></div>
             <img src={starIcon} alt="Star Companion" className="star-companion" />
 
             {/* MAIN PHONE */}

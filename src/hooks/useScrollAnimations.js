@@ -23,7 +23,7 @@ export function useScrollAnimations() {
       prevent: (node) => {
         // Don't apply smooth scroll when over modals or scrollable inner containers
         return node.closest?.('.modal-overlay') !== null ||
-               node.closest?.('.modal-content') !== null;
+          node.closest?.('.modal-content') !== null;
       },
     });
     lenisRef.current = lenis;
@@ -136,10 +136,8 @@ export function useScrollAnimations() {
         ease: "power3.out",
         delay: 0.5
       });
-      gsap.from(".star-companion", {
+      gsap.from(".star-companion, .star-glow-backdrop", {
         opacity: 0,
-        x: -40,
-        rotate: -35,
         duration: 1.0,
         ease: "power3.out",
         delay: 0.9

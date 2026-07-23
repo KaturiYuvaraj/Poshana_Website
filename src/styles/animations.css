@@ -109,14 +109,34 @@ main {
   animation: pageFadeIn 0.5s ease-out forwards;
 }
 
-/* ─── Star companion: enhanced float ────────────────────── */
+/* ─── Star companion: enhanced float & glow ────────────────────── */
 @keyframes starGlow {
-  0%, 100% { filter: brightness(1.4) contrast(1.1) drop-shadow(0 15px 35px rgba(0,0,0,.45)) drop-shadow(0 0 30px rgba(239,255,30,.35)); }
-  50%       { filter: brightness(1.6) contrast(1.1) drop-shadow(0 15px 35px rgba(0,0,0,.45)) drop-shadow(0 0 45px rgba(239,255,30,.6)); }
+  0% {
+    filter: brightness(1.12) contrast(1.06) saturate(1.15)
+            drop-shadow(0 0 18px rgba(0, 229, 255, 0.65))
+            drop-shadow(0 0 35px rgba(56, 239, 213, 0.45))
+            drop-shadow(0 0 65px rgba(0, 180, 216, 0.3))
+            drop-shadow(0 15px 30px rgba(0, 40, 50, 0.4));
+  }
+  50% {
+    filter: brightness(1.28) contrast(1.12) saturate(1.35)
+            drop-shadow(0 0 32px rgba(0, 240, 255, 0.92))
+            drop-shadow(0 0 65px rgba(56, 239, 213, 0.8))
+            drop-shadow(0 0 100px rgba(239, 255, 30, 0.55))
+            drop-shadow(0 0 140px rgba(0, 180, 216, 0.4))
+            drop-shadow(0 20px 40px rgba(0, 40, 50, 0.5));
+  }
+  100% {
+    filter: brightness(1.18) contrast(1.08) saturate(1.25)
+            drop-shadow(0 0 24px rgba(56, 239, 213, 0.8))
+            drop-shadow(0 0 50px rgba(0, 229, 255, 0.6))
+            drop-shadow(0 0 80px rgba(0, 180, 216, 0.4))
+            drop-shadow(0 18px 35px rgba(0, 40, 50, 0.45));
+  }
 }
 
 .star-companion {
-  animation: floatCompanion 6s ease-in-out infinite, starGlow 4s ease-in-out infinite;
+  animation: floatCompanion 7s cubic-bezier(0.45, 0, 0.55, 1) infinite, starGlow 4s ease-in-out infinite alternate;
 }
 
 /* ─── Scroll-reveal utility (fallback for elements not handled by gsap) ─ */

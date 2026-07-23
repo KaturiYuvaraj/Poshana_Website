@@ -176,7 +176,7 @@ export default function VoiceAssistant() {
 
         let output = text;
 
-        output = output.replace(/Poshana/gi, "Po sha na");
+        output = output.replace(/Poshana/gi, "Po shana");
 
         output = output.replace(/BMI/g, "B M I");
 
