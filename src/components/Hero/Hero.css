@@ -596,10 +596,10 @@
 
     .mobile-mockup-container .star-companion {
         width: 190px;
-        left: -80px;
+        left: -110px;
         bottom: 5px;
         z-index: 1 !important;
-        transform: rotate(-65deg);
+        transform: rotate(-40deg);
     }
 
     .mobile-mockup-container .star-glow-backdrop {
